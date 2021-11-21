@@ -1,0 +1,162 @@
+@import url("./reset.css");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+body {
+  background-color: #eeeeee;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  opacity: 0.5;
+  transition: all .2s;
+}
+
+.header {
+  width: 100%;
+  padding: 10px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #222831;
+  font-family: "Roboto", sans-serif;
+}
+
+.header .header__logo h1 a {
+  font-size: 36px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.header .header__navigation ul {
+  display: flex;
+}
+
+.header .header__navigation ul li {
+  list-style: none;
+}
+
+.header .header__navigation ul li a {
+  padding: 10px;
+  color: #ffffff;
+  transition: all 0.3s;
+}
+
+.header .header__navigation li a:hover {
+  padding: 10px;
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+main {
+  margin-bottom: 66px;
+}
+
+.article {
+  width: 100%;
+  display: flex;
+  padding: 10px 25px;
+  border-bottom: 3px dashed #393e46;
+}
+
+.article:last-child:not(:first-child) {
+  border-bottom: none;
+}
+
+.article__block {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.article__block.left {
+  justify-content: end;
+}
+
+.article__block.right {
+  justify-content: start;
+}
+
+.article__block.right p,
+.article__block.left p {
+  width: 500px;
+}
+
+.article__block p {
+  font-family: "Roboto", sans-serif;
+  line-height: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #222831;
+}
+
+.article__block p .colored {
+  color: #00adb5;
+}
+
+.article__divider {
+  width: 2px;
+  height: 400px;
+  background-color: #393e46;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 5px 25px;
+  background-color: #222831;
+}
+
+.table {
+  font-family: "Roboto", sans-serif;
+  border-collapse: collapse;
+  width: 400px;
+  cursor: pointer;
+}
+
+.table td,
+.table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table tr:nth-child(2n) {
+  background-color: #f2f2f2;
+}
+
+.table tr:hover {
+  background-color: #ddd;
+}
+
+.table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #393e46;
+  color: white;
+}
+
+
+button {
+  width: 80px;
+  height: 30px;
+  border: none;
+  background-color: #222831;
+  color: #ffffff;
+  transition: all .3s;
+  outline: 0px solid rgba(34, 40, 49, 0);
+}
+
+button:hover {
+  outline: 5px solid rgba(34, 40, 49, 0.5);
+}

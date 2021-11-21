@@ -1,0 +1,12 @@
+th, td {
+  border: 1px solid black;
+  padding: 10px 20px;
+}
+
+tbody tr td:first-child {
+  background-color: darkseagreen;
+}
+
+tbody tr td:last-child {
+  background-color: pink;
+}

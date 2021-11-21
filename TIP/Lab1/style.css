@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+body {
+  width: 95%;
+  margin: 10px auto;
+}
+
+header.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px auto;
+  padding: 10px 20px;
+  background-color: white;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 9px 26px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 0px 9px 26px 0px rgba(50, 50, 50, 0.75);
+  box-shadow: 0px 9px 26px 0px rgba(50, 50, 50, 0.75);
+}
+
+.header .header__nav {
+  display: flex;
+  list-style: none;
+}
+
+.header .header__nav li {
+  margin: 0px 10px;
+  border-bottom: 1px solid transparent;
+}
+
+.header .header__nav li:hover {
+  border-bottom: 1px solid #000000;
+}
+
+main.page {
+  margin-top: 40px;
+  padding: 20px 0px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 9px 26px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 0px 9px 26px 0px rgba(50, 50, 50, 0.75);
+  box-shadow: 0px 9px 26px 0px rgba(50, 50, 50, 0.75);
+}
+
+.page h2 {
+  font-size: 40px;
+}
+
+.page .page__section {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px 20px;
+}
+
+.page .page__section h3 {
+  margin: 10px 0px;
+  font-size: 30px;
+}
+
+.page .page__section p {
+  margin: 10px 0px;
+  font-size: 20px;
+}
+
+.page .page__section .page__section-img {
+  margin: 10px 0px;
+  display: flex;
+}
+
+.page .page__section .page__section-img img {
+  width: auto;
+  height: 300px;
+}
+
+.page .page__section .page__section-img img + img {
+  margin-left: 30px;
+}
+
+.page .page__section ul {
+  margin-left: 20px;
+  font-size: 20px;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="css/page1.css">
+  <title>Document</title>
+  <script>
+    function onRead(link) {
+      window.open(link);
+    }
+  </script>
+</head>
+
+<body>
+  <header class="header">
+    <div class="header__logo">
+      <h1><a href="../index.html">WebDev</a></h1>
+    </div>
+    <nav class="header__navigation">
+      <ul>
+        <li><a href="page1.html">News</a></li>
+        <li><a href="page2.html">Frontend</a></li>
+        <li><a href="page3.html">Backend</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <article class="article">
+      <div class="article__block left">
+        <a href="https://medium.com/front-end-weekly/increase-development-speed-with-angularjs-attributes-cc5cadbc3d54">
+          <img src="../assets/img/img3.jpg" alt="img" width="512">
+        </a>
+      </div>
+      <div class="article__block right">
+        <p>
+          <span class="colored"><a
+              href="https://medium.com/front-end-weekly/increase-development-speed-with-angularjs-attributes-cc5cadbc3d54">Increase
+              Web Development speed with AngularJS Attributes</a></span> AngularJS is a client-side framework to create
+          Single Page Applications (SPA). It makes use of the Model-View-ViewModel pattern (MVVM). Using this framework
+          and MVVM makes coding of web-based applications easier. The use of AngularJS assumes HTML as UI language.
+          AngularJS enriches HTML by attributes.<br>
+          <button
+            onclick='onRead("https://medium.com/front-end-weekly/increase-development-speed-with-angularjs-attributes-cc5cadbc3d54")'>Read</button>
+        </p>
+      </div>
+    </article>
+    <article class="article">
+      <div class="article__block left">
+        <a
+          href="https://devtrium.com/posts/how-to-use-react-usereducer-hook?ck_subscriber_id=887757136&utm_campaign=Frontend%2BWeekly&utm_medium=web&utm_source=Frontend_Weekly_274">
+          <img src="../assets/img/img2.png" alt="img" width="512">
+        </a>
+      </div>
+      <div class="article__block right column">
+        <p>
+          <span class="colored"><a
+              href="https://devtrium.com/posts/how-to-use-react-usereducer-hook?ck_subscriber_id=887757136&utm_campaign=Frontend%2BWeekly&utm_medium=web&utm_source=Frontend_Weekly_274">How
+              to use React useReducer hook like a pro.</a></span> Managing state in React is one of the
+          main issues you'll be facing while developing React websites. useState is of course the most common way to
+          create and manage state in (functional) React components.<br>
+          <button
+            onclick='onRead("https://devtrium.com/posts/how-to-use-react-usereducer-hook?ck_subscriber_id=887757136&utm_campaign=Frontend%2BWeekly&utm_medium=web&utm_source=Frontend_Weekly_274")'>Read</button>
+        </p>
+      </div>
+    </article>
+  </main>
+  <footer class="footer">
+    <audio autoplay controls loop>
+      <source src="../assets/audio/music.mp3">
+    </audio>
+  </footer>
+</body>
+
+</html>
