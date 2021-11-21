@@ -1,0 +1,9 @@
+<div class="list">
+  <app-list-item *ngFor="let item of carsList" [car]="item" (onDelete)="loadList()"></app-list-item>
+</div>
+<button class="but" color="primary" mat-raised-button (click)="loadMore()">Load More</button>
+
+<!-- <mat-grid-list cols="2" rowHeight="2:1">
+  <app-list-item *ngFor="let item of carsList" [car]="item">
+  </app-list-item>
+</mat-grid-list> -->

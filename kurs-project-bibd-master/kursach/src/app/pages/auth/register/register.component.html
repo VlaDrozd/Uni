@@ -1,0 +1,35 @@
+<div class="cover">
+  <form class="form" [formGroup]="Form">
+    <h2 class="form__title">Register</h2>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" name="email" id="email" formControlName="email" placeholder="Email">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>First Name</mat-label>
+      <input matInput type="text" name="name" id="name" formControlName="name" placeholder="First Name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Last Name</mat-label>
+      <input matInput type="text" name="surname" id="surname" formControlName="surname" placeholder="Last Name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" name="password" id="password" formControlName="password" placeholder="Password">
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Confirm password</mat-label>
+      <input matInput type="password" name="confirm" id="confirm" formControlName="confirm"
+        placeholder="Confirm password">
+    </mat-form-field>
+
+    <button mat-button (click)="submit()">Register</button>
+    <button mat-button (click)="changeForm.emit('login')">Log in</button>
+  </form>
+</div>

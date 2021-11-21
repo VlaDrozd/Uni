@@ -1,0 +1,88 @@
+<div class="cover">
+  <div class="form">
+    <mat-form-field appearance="fill">
+      <mat-label>Select concern</mat-label>
+      <mat-select [(ngModel)]="filters.concern">
+        <mat-option value="">None</mat-option>
+        <mat-option *ngFor="let brand of carBrands" [value]="brand.name">{{brand.name}}</mat-option>
+      </mat-select>
+      <button mat-button *ngIf="filters.concern" matSuffix mat-icon-button aria-label="Clear" (click)="filters.concern=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Fuel</mat-label>
+      <mat-select [(ngModel)]="filters.fuel">
+        <mat-option value="">None</mat-option>
+        <mat-option value="Diesel">Diesel</mat-option>
+        <mat-option value="Petrol">Petrol</mat-option>
+        <mat-option value="Electro">Electro</mat-option>
+        <mat-option value="Hybrid">Hybrid</mat-option>
+      </mat-select>
+      <button mat-button *ngIf="filters.fuel" matSuffix mat-icon-button aria-label="Clear" (click)="filters.fuel=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Min Year</mat-label>
+      <mat-select [(ngModel)]="filters.minYear">
+        <mat-option value="">None</mat-option>
+        <mat-option *ngFor="let year of getYears()" [value]="year">{{year}}</mat-option>
+      </mat-select>
+      <button mat-button *ngIf="filters.minYear" matSuffix mat-icon-button aria-label="Clear" (click)="filters.minYear=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Max Year</mat-label>
+      <mat-select [(ngModel)]="filters.maxYear">
+        <mat-option value="">None</mat-option>
+        <mat-option *ngFor="let year of getYears()" [value]="year">{{year}}</mat-option>
+      </mat-select>
+      <button mat-button *ngIf="filters.maxYear" matSuffix mat-icon-button aria-label="Clear" (click)="filters.maxYear=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Min Mileage</mat-label>
+      <input [(ngModel)]="filters.minMileage" type="number" matInput placeholder="Select Min Mileage">
+      <button mat-button *ngIf="filters.minMileage" matSuffix mat-icon-button aria-label="Clear" (click)="filters.minMileage=''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <span matSuffix>km</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Max Mileage</mat-label>
+      <input [(ngModel)]="filters.maxMileage" type="number" matInput placeholder="Select Max Mileage">
+      <button mat-button *ngIf="filters.maxMileage" matSuffix mat-icon-button aria-label="Clear" (click)="filters.maxMileage=''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <span matSuffix>km</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Min Price</mat-label>
+      <input [(ngModel)]="filters.minPrice" type="number" matInput placeholder="Select Min Price">
+      <button mat-button *ngIf="filters.minPrice" matSuffix mat-icon-button aria-label="Clear" (click)="filters.minPrice=''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <span matSuffix>$</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Min Price</mat-label>
+      <input [(ngModel)]="filters.maxPrice" type="number" matInput placeholder="Select Min Price">
+      <button mat-button *ngIf="filters.maxPrice" matSuffix mat-icon-button aria-label="Clear" (click)="filters.maxPrice=''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <span matSuffix>$</span>
+    </mat-form-field>
+
+    <button mat-button color="primary" (click)="addFilters()">Submit filters</button>
+  </div>
+</div>

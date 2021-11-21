@@ -1,0 +1,4 @@
+<div [ngSwitch]="currentForm.value" class="page-cover">
+    <app-login *ngSwitchCase="'login'" (changeForm)="currentForm.next($event)"></app-login>
+    <app-register *ngSwitchCase="'register'" (changeForm)="currentForm.next($event)"></app-register>
+</div>

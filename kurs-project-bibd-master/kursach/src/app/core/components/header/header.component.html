@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span (click)="titleClick()" [style.cursor]="'pointer'">CarSearch</span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button color="accent" (click)="isAuth ? openAddCar() : openAuth('login')">Sell Car</button>
+    <span class="example-spacer"></span>
+    <button *ngIf="!isAuth" mat-button (click)="openAuth('login')">Sign in</button>
+    <button *ngIf="!isAuth" mat-button (click)="openAuth('register')">Register</button>
+    <button *ngIf="isAuth" mat-button (click)="openCars()">My Cars</button>
+    <button *ngIf="isAuth" mat-raised-button color="warn" (click)="logout()">Logout</button>
+  </mat-toolbar-row>
+</mat-toolbar>

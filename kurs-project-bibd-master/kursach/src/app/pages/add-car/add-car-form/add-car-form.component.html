@@ -1,0 +1,59 @@
+<div class="custom-cover">
+  <form class="form" [formGroup]="Form">
+    <h2 class="form__title">Add car</h2>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select concern</mat-label>
+      <mat-select name="concern" id="concern" formControlName="concern" placeholder="Select concern">
+        <mat-option *ngFor="let brand of carBrands" [value]="brand.name">{{brand.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="example-full-width">
+      <mat-label>Enter Model</mat-label>
+      <input matInput type="text" name="model" id="model" formControlName="model" placeholder="Enter Model">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Fuel</mat-label>
+      <mat-select name="fuel" id="fuel" formControlName="fuel" placeholder="Select Fuel">
+        <mat-option value="Diesel">Diesel</mat-option>
+        <mat-option value="Petrol">Petrol</mat-option>
+        <mat-option value="Electro">Electro</mat-option>
+        <mat-option value="Hybrid">Hybrid</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select year</mat-label>
+      <mat-select name="year" id="year" formControlName="year" placeholder="Select year">
+        <mat-option *ngFor="let year of getYears()" [value]="year">{{year}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="example-full-width">
+      <mat-label>Enter Mileage</mat-label>
+      <input matInput type="number" name="mileage" id="mileage" formControlName="mileage" placeholder="Enter Mileage">
+      <span matSuffix>km &nbsp;</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="example-full-width">
+      <mat-label>Enter Additional Information</mat-label>
+      <textarea matInput name="info" id="info" cols="30" rows="10" formControlName="info"
+      placeholder="Info"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="example-full-width">
+      <mat-label>Enter Price</mat-label>
+      <input matInput type="number" name="price" id="price" formControlName="price" placeholder="Enter Price">
+      <span matSuffix>$ &nbsp;</span>
+    </mat-form-field>
+
+    <input class="form__input file" type="file" name="photo" id="photo" (change)="handleFileInput($event.target.files)"
+      placeholder="Add Preview Photo">
+
+    <button mat-button (click)="sendForm()" class="form__submit">Add</button>
+  </form>
+
+</div>
