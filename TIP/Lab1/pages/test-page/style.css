@@ -5,3 +5,7 @@ main.page {
 ol {
   margin-left: 30px;
 }
+
+ul>li {
+  list-style: none;
+}
