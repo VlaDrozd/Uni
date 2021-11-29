@@ -10,4 +10,4 @@ const getAverageTime = (itarations) => {
   ];
 }
 
-console.log(getAverageTime(1000));
+console.log(getAverageTime(100));

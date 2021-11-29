@@ -35,7 +35,7 @@
         <div>
           <ul>
             <li>
-              <input type="radio" name="q1" id="q11">
+              <input class="right" type="radio" name="q1" id="q11" >
               <!-- правильный -->
               <label for="q11">Биология</label>
             </li>
@@ -65,7 +65,7 @@
               <label for="q22">HTC Vive</label>
             </li>
             <li>
-              <input type="radio" name="q2" id="q23">
+              <input class="right" type="radio" name="q2" id="q23">
               <!-- правильный -->
               <label for="q23">Google Glass</label>
             </li>
@@ -83,7 +83,7 @@
               <label for="q31">Простота техобслуживания</label>
             </li>
             <li>
-              <input type="radio" name="q3" id="q32">
+              <input class="right" type="radio" name="q3" id="q32">
               <!-- правильный -->
               <label for="q32">Дальность дистанции от одной зарядки</label>
             </li>
@@ -101,7 +101,7 @@
         <div>
           <ul>
             <li>
-              <input type="radio" name="q4" id="q41">
+              <input class="right" type="radio" name="q4" id="q41">
               <!-- правильный -->
               <label for="q41">Robota</label>
             </li>
@@ -124,15 +124,15 @@
         <div>
           <ul>
             <li>
-              <input type="checkbox" name="q5" id="q51">
+              <input class="rightCheckbox" type="checkbox" name="q5" id="q51">
               <label for="q51">Медицина</label>
             </li>
             <li>
-              <input type="checkbox" name="q5" id="q52">
+              <input class="rightCheckbox" type="checkbox" name="q5" id="q52">
               <label for="q52">Наука</label>
             </li>
             <li>
-              <input type="checkbox" name="q5" id="q53">
+              <input class="rightCheckbox" type="checkbox" name="q5" id="q53">
               <label for="q53">Техника</label>
             </li>
           </ul>
@@ -147,7 +147,7 @@
           <ul>
             <li>
               <!-- правильный -->
-              <input type="radio" name="q6" id="q61">
+              <input class="right" type="radio" name="q6" id="q61">
               <label for="q61">Компьютерные игры</label>
             </li>
             <li>
@@ -155,7 +155,7 @@
               <label for="q62">Почта</label>
             </li>
             <li>
-              <input type="radio" name="q6" id="q63"7
+              <input type="radio" name="q6" id="q63">
               <label for="q63">Автомобили</label>
             </li>
           </ul>
@@ -170,7 +170,7 @@
           <ul>
             <li>
               <!-- правильный -->
-              <input type="radio" name="q7" id="q71">
+              <input class="right" type="radio" name="q7" id="q71">
               <label for="q71">Tesla</label>
             </li>
             <li>
@@ -197,7 +197,7 @@
             </li>
             <li>
               <!-- правильный -->
-              <input type="radio" name="q8" id="q82">
+              <input class="right" type="radio" name="q8" id="q82" >
               <label for="q82">Обучение сети в ряде случаев приводит к тупиковым ситуациям</label>
             </li>
             <li>
@@ -207,10 +207,11 @@
           </ul>
         </div>
       </li>
-      <p>Результат <span>3</span>/8</p>
-      <button>Проверить</button>
+      <p>Результат <span id="testResult">3</span>/8</p>
+      <button id="checkBtn" onclick="onCheck()">Проверить</button>
     </ol>
   </main>
+  <script src="./script.js"></script>
 </body>
 
 </html>
