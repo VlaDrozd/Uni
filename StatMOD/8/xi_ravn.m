@@ -1,6 +1,6 @@
 clear; clc;
 n=500;
-a=-10; b=10;
+a=9; b=10;
 x = double.empty(0,n);
 for i=1:n
     x(i)=unifrnd(a,b);
