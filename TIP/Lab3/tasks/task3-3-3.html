@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form id="form">
+    Январь: <input type="number" name="january" value="12"><br>
+    Февраль: <input type="number" name="february" value="12"><br>
+    Март: <input type="number" name="march" value="12"><br>
+    Апрель: <input type="number" name="april" value="12"><br>
+    Май: <input type="number" name="may" value="1123123123"><br>
+  </form>
+  <button onclick="calc()">Calc</button>
+  <script>
+    const calc = () => {
+      console.log(form.elements);
+      const sum = [...form.elements].reduce((acc, el, index,arr) => {
+        acc += Number(el.value) / arr.length;
+        console.log(acc);
+        return acc;
+      }, 0);
+      alert(sum);
+    }
+  </script>
+</body>
+
+</html>

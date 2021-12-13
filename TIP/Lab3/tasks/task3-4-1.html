@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <table border=5>
+    <FORM name="form1">
+      <tr>
+        <td>Выберите фигуру:
+          <select name="list1" size=1>
+            <option value=0>круг</option>
+            <option value=1>квадрат</option>
+            <option value=2>треугольник (прямоугольный, равнобедренный)</option>
+            <option value=3>треугольник (равносторонний)</option>
+          </select>&nbsp;&nbsp;&nbsp;
+          Выберите единицы измереения:
+          <select name="units" size=1>
+            <option value='миллиметры' >миллиметры</option>
+            <option value='сантиметры' >сантиметры</option>
+            <option selected value='метры' >метры</option>
+            <option value='дюймы' >дюймы</option>
+          </select>&nbsp;&nbsp;&nbsp;
+          Введите параметр (радиус, сторону, высоту):
+          <input type="text" size=5 name="num"><br>
+          <input type="button" value="Вычислить" onClick="testsel()"><br><br><br>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Фигура: <input type="text" name="fig" size=65>&nbsp;&nbsp;&nbsp;
+          Площадь: <input type="text" name="res" size=14><br>
+          <input type="reset" value="Обновить">
+        </td>
+      </tr>
+    </FORM>
+  </table>
+  <script>
+    function getFormattedValue(value, units) {
+      switch (units) {
+        case 'миллиметры':
+         return value * 1000;
+
+        case 'сантиметры':
+         return value * 100;
+
+        case 'дюймы':
+          return value * 39,37;
+
+        default:
+          return value;
+      }S
+    }
+
+    function testsel() {
+      var d = document;
+      var a = d.forms["form1"].num.value;
+      var s;
+      var r = "  ";
+      if (((d.forms["form1"].elements[0])[0]).selected) {
+        r = r + ((d.forms["form1"].elements[0])[0]).text;
+        s = a * a * 3.14;
+      }
+      if (((d.forms["form1"].elements[0])[1]).selected) {
+        r = r + ((d.forms["form1"].elements[0])[1]).text;
+        s = a * a;
+      }
+      if (((d.forms["form1"].elements[0])[2]).selected) {
+        r = r + ((d.forms["form1"].elements[0])[2]).text;
+        s = a * a / 2;
+      }
+      if (((d.forms["form1"].elements[0])[3]).selected) {
+        r = r + ((d.forms["form1"].elements[0])[3]).text;
+        s = a ** 2 * Math.sqrt(3) / 4;
+      }
+      d.forms["form1"]["res"].value = getFormattedValue(s,  d.forms["form1"]["units"].value);
+      d.forms["form1"]["fig"].value = r;
+    }
+  </script>
+</body>
+
+</html>

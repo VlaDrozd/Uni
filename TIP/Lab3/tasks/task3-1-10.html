@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let x = 0;
+    let pass = '';
+    const rightPass = 'pswdPIP';
+    while (x < 3 && pass != rightPass) {
+      pass = prompt('Введите пароль, пожалуйста:');
+      if (pass != rightPass) {
+        alert('Неверный пароль! Попробуйте еще раз!');
+      }
+      x++;
+    }
+    if (pass == rightPass) {
+      alert('Добро пожаловать!');
+    } else {
+      window.location.href = '../pages/incorrect.html';
+    }
+  </script>
+</body>
+
+</html>

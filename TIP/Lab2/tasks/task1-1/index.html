@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="alertBtn" onclick="showAlert()">Alert</button>
+  <button id="promptBtn" onclick="showPrompt()">Prompt</button>
+  <button id="confirmBtn" onclick="showConfirm()">Confirm</button>
+  <p>Your name: <span id="name">-</span></p>
+
+  <script>
+    const showAlert = () => alert("Это alert (предупреждение), метод языка JavaScript, с которым," +
+      " экспериментирует Петров, заменяя этот текст на приветствие самому себе!");
+
+    const showPrompt = () => {
+      const name = prompt("Как вас зовут? (введите свои данные вместо данных по умолчанию)", "Петров Иван Петрович");
+      document.querySelector('#name').textContent = name;
+    };
+
+    const showConfirm = () => {
+      const result = confirm("Это confirm-подтверждение. Сделайте выбор: да/нет")
+      alert(result);
+    };
+  </script>
+</body>
+
+</html>

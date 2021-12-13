@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body style="background-color: #cccccc;">
+  <select name="operatorInput" id="operatorInput" onchange="setOperation()">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+    <option value="++">++</option>
+    <option value="--">--</option>
+  </select><br>
+  <input type="text" name="num1" id="numInput1" placeholder="Число 1"><br>
+  <input type="text" name="num2" id="numInput2" placeholder="Число 2"><br>
+  <button id="calc" onclick="calc()">Clculate</button>
+  <script>
+    let operator = operatorInput.value;
+    const setOperation = () => {
+      operator = operatorInput.value;
+      if (operator === '++' || operator === '--') {
+        numInput2.style.display = 'none';
+      } else {
+        numInput2.style.display = 'block';
+      }
+    }
+    const calc = () => {
+      let num1 = +numInput1.value;
+      let num2 = +numInput2.value;
+      switch(operator) {
+        case '+':
+          alert(num1 + num2);
+          break;
+        case '-':
+          alert(num1 - num2);
+          break;
+        case '*':
+          alert(num1 * num2);
+          break;
+        case '/':
+          alert(num1 / num2);
+          break;
+        case '%': 
+          alert(num1 % num2);
+          break;
+        case '++':
+          alert(++num1);
+          break;
+        case '--':
+          alert(--num1);
+          break;
+      }
+      
+
+    }
+  </script>
+</body>
+</html>

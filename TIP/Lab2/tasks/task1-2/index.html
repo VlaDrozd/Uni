@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="alertBtn" onclick="showAlert()">Alert</button>
+  <button id="promptBtn" onclick="showPrompt()">Prompt</button>
+  <button id="confirmBtn" onclick="showConfirm()">Confirm</button>
+  <p>Your name: <span id="name">-</span></p>
+
+  <script>
+    const showAlert = () => alert("Салют Влад и Тимур");
+
+    const showPrompt = () => {
+      const name = prompt("Как вас зовут?", "Дрозд Владислав Андреевич");
+      document.querySelector('#name').textContent = name;
+    };
+
+    const showConfirm = () => {
+      const result = confirm("Это confirm-подтверждение. Сделайте выбор: yes/no");
+      /* Я, студент Владислав изменил, то что было в тексте окна подтверждения (да/нет) на yes/no */
+      alert(result);
+    };
+  </script>
+</body>
+
+</html>

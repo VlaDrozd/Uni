@@ -19,8 +19,6 @@ class Engine {
     this._bounds = this.getBunds(this._size.x, this._size.y);
 
     this.addObject(new Object(ball));
-    this.addObject(new Object(ball2));
-    this.addObject(new Object(ball3));
     this._basket = new Basket(basket);
 
     setInterval(() => {
@@ -43,15 +41,17 @@ class Engine {
   }
 
   checkBounds(bounds, object) {
-    const checkY = bounds.every(bound => bound.y >= this._bounds[0].y && bound.y <= this._bounds[2].y);
-    const checkX = bounds.every(bound => bound.x >= this._bounds[0].x && bound.x <= this._bounds[2].x);
-    const basket = !object.checkCollision(this._basket._bounds[1]);
+    const top = !object.checkCollisionWithLine(bounds[0], bounds[1]);
+    const right = !object.checkCollisionWithLine(bounds[1], bounds[2]);
+    const bottom = !object.checkCollisionWithLine(bounds[2], bounds[3]);
+    const left = !object.checkCollisionWithLine(bounds[3], bounds[0]);
+    const basket = !object.checkCollisionWithDot(this._basket._bounds[1]);
 
     if (this._basket.checkTrigger(object)) {
       this._score += 1;
     }
 
-    if (checkX && checkY && basket) {
+    if (top && right && bottom && left && basket) {
       return true;
     }
 
@@ -61,25 +61,25 @@ class Engine {
   getPosByBounds(bounds, pos, width, height, object) {
     let isHorizontal = false;
 
-    if (bounds[0].x < this._bounds[0].x) {
+    if (!object.checkCollisionWithLine(bounds[3], bounds[0])) {
       isHorizontal = true;
       pos.x = bounds[0].x + width / 2;
     }
 
-    if (bounds[0].y < this._bounds[0].y) {
+    if (!object.checkCollisionWithLine(bounds[0], bounds[1])) {
       pos.y = bounds[0].y + height / 2;
     }
 
-    if (bounds[2].x > this._bounds[2].x) {
+    if (!object.checkCollisionWithLine(bounds[1], bounds[2])) {
       isHorizontal = true;
       pos.x = this._bounds[2].x - width / 2;
     }
 
-    if (bounds[2].y > this._bounds[2].y) {
+    if (!object.checkCollisionWithLine(bounds[2], bounds[3])) {
       pos.y = this._bounds[2].y - height / 2;
     }
 
-    if (object.checkCollision(this._basket._bounds[1])) {
+    if (object.checkCollisionWithDot(this._basket._bounds[1])) {
       if (this._basket._bounds[1].x < pos.x) {
         pos.x = this._basket._bounds[1].x + width / 2 + 5;
       }
@@ -246,10 +246,33 @@ class Object {
     return { forceX, forceY };
   }
 
-  checkCollision({x, y}) {
+  checkCollisionWithDot({x, y}) {
     const radius = this._width / 2;
     const center = { x: this._position.x, y: this._position.y };
     return (x - center.x) * (x - center.x) + (y - center.y) * (y - center.y) < radius * radius;
+  }
+
+  checkCollisionWithBall(ball) {
+    const radius = this._width / 2;
+    const center = { x: this._position.x, y: this._position.y };
+    const ballRadius = ball._width / 2;
+    const ballCenter = { x: ball._position.x, y: ball._position.y };
+    return Math.sqrt((ballCenter.x - center.x) * (ballCenter.x - center.x) + (ballCenter.y - center.y) * (ballCenter.y - center.y)) < radius + ballRadius;
+  }
+
+  checkCollisionWithLine(start, end) {
+    const radius = this._width / 2;
+    const center = { x: this._position.x, y: this._position.y };
+
+    const a = end.y - start.y;
+    const b = start.x - end.x;
+    const c = end.x * start.y - start.x * end.y;
+
+    const x = center.x;
+    const y = center.y;
+
+    const d = Math.abs(a * x + b * y + c) / Math.sqrt(a * a + b * b);
+    return d < radius;
   }
 
 }
@@ -289,11 +312,11 @@ class Basket {
   }
 
   checkTrigger(ball) {
-    if (this._state === 0 && ball.checkCollision(this._triggers[0])) {
+    if (this._state === 0 && ball.checkCollisionWithDot(this._triggers[0])) {
       this._state = 1;
       return false;
     }
-    if (this._state === 1 && ball.checkCollision(this._triggers[1])) {
+    if (this._state === 1 && ball.checkCollisionWithDot(this._triggers[1])) {
       this._state = 0;
       return true;
     } else if (ball._position.x > this._bounds[1].x) {

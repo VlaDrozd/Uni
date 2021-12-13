@@ -38,7 +38,7 @@ const process = (mass = { profit: 0 }) => {
 (() => {
   let mass = process()
 
-  for (let i = 0; i < 100000; i++) {
+  for (let i = 0; i < 1000000; i++) {
     const option = process()
     if (option.profit > mass.profit) {
       mass = { ...option }

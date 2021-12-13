@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*
+      Задача 3-2:
+      \b (возврат на одну позицию),
+      \t (табуляция),
+      \f (переход на следующую страницу),
+      \n (переход на следующую строку),
+      \r (возврат каретки),
+      \” (двойная кавычка),
+      \’(одинарная кавычка - апостроф),
+      \\ ( обратная косая черта - обратный слэдж).
+    */
+    const sequences = [
+      ['\b', '\\b'],
+      ['\t', '\\t'],
+      ['\f', '\\f'],
+      ['\n', '\\n'],
+      ['\r', '\\r'],
+      ['\"', '\\"'],
+      ['\'', '\\\''],
+      ['\\', '\\\\'],
+    ];
+    alert(
+      sequences.map(
+        sequence => `${sequence[1]} = ${sequence[0]}`
+      ).join('\n')
+    );
+  </script>
+</body>
+
+</html>

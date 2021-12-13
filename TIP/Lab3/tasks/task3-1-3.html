@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let x = -1;
+    do {
+      x++;
+      sometext = prompt("Введите текст", "Впечатайте любой текст");
+    }
+    while ((sometext == "Впечатайте любой текст" || sometext == "" || sometext == null) && x < 2);
+    // if (x > 3) { alert("Если это задание 3.5.3, то вы забыли выполнить его условие."); }
+    alert(`Text: ${sometext}, Количество итераций: ${x+1}`);
+  </script>
+</body>
+
+</html>

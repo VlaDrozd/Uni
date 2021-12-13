@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let selectedMonth = 'январь';
+    let selectetLanguage = 'ru';
+    let months = [];
+    let monthInfo = [];
+    const monthsByLang = {
+      ru: ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'],
+      en: ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
+    };
+
+    const monthInfoByLang = {
+      ru: [
+        'Первый месяц года',
+        'Второй месяц года',
+        'Третий месяц года',
+        'Четвертый месяц года',
+        'Пятый месяц года',
+        'Шестой месяц года',
+        'Седьмой месяц года',
+        'Восьмой месяц года',
+        'Девятый месяц года',
+        'Десятый месяц года',
+        'Одиннадцатый месяц года',
+        'Двенадцатый месяц года',
+      ],
+      en: [
+        'First month of the year',
+        'Second month of the year',
+        'Third month of the year',
+        'Fourth month of the year',
+        'Fifth month of the year',
+        'Sixth month of the year',
+        'Seventh month of the year',
+        'Eighth month of the year',
+        'Ninth month of the year',
+        'Tenth month of the year',
+        'Eleventh month of the year',
+        'Twelfth month of the year',
+      ]
+    }
+
+    const onAlert = () => {
+      // Пытаемся найти индекс введенного месяца в нашем массиве 
+      let index = months.includes(selectedMonth.toLowerCase()) ? 
+        months.findIndex((month) => month.includes(selectedMonth.toLowerCase())) + 1 : selectedMonth;
+      // Выводим информацию по выбранному месяцу если он найден в масииве, в противном случае - текст "Неправильное значение месяца" 
+      alert(index !== -1 ? monthsInfo[index - 1] : 'Неправильное значение месяца');
+    }
+
+    const onPrompt = () => {
+      // Обновляем значение в переменной
+      selectetLanguage = prompt('Выберите язык (ru/en)', selectetLanguage);
+
+      months = monthsByLang[selectetLanguage];
+      monthsInfo = monthInfoByLang[selectetLanguage]
+
+      selectedMonth = prompt(selectetLanguage === 'en'
+        ? 'Введите номер или название месяца (например: 1/Январь)'
+        : 'Enter the number or name of the month (for example: 1 / January)', selectedMonth);
+    }
+    onPrompt();
+    onAlert();
+
+  </script>
+</body>
+
+</html>
