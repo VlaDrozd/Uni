@@ -21,14 +21,18 @@ class Engine {
     this.addObject(new Object(ball));
     this._basket = new Basket(basket);
 
-    setInterval(() => {
-      this._objects.forEach(object => object.update(1000 / 1000 / this._FPS));
-      prevMousepos.x = currentMousePos.x;
-      prevMousepos.y = currentMousePos.y;
-      currentMousePos.x = mousepos.x;
-      currentMousePos.y = mousepos.y;
-      this._scoreElem.innerText = this._score;
-    }, 1000 / this._FPS);
+    setTimeout(() => {
+      this._objects.forEach(object => object.update(1000 / 1000 / this._FPS))
+    }, 1000) 
+
+    // setInterval(() => {
+    //   this._objects.forEach(object => object.update(1000 / 1000 / this._FPS));
+    //   prevMousepos.x = currentMousePos.x;
+    //   prevMousepos.y = currentMousePos.y;
+    //   currentMousePos.x = mousepos.x;
+    //   currentMousePos.y = mousepos.y;
+    //   this._scoreElem.innerText = this._score;
+    // }, 1000 / this._FPS);
   }
 
   addObject(object) {
@@ -46,6 +50,8 @@ class Engine {
     const bottom = !object.checkCollisionWithLine(bounds[2], bounds[3]);
     const left = !object.checkCollisionWithLine(bounds[3], bounds[0]);
     const basket = !object.checkCollisionWithDot(this._basket._bounds[1]);
+
+    console.log(top, right, bottom, left, basket);
 
     if (this._basket.checkTrigger(object)) {
       this._score += 1;
@@ -249,7 +255,7 @@ class Object {
   checkCollisionWithDot({x, y}) {
     const radius = this._width / 2;
     const center = { x: this._position.x, y: this._position.y };
-    return (x - center.x) * (x - center.x) + (y - center.y) * (y - center.y) < radius * radius;
+    return Math.sqrt((x - center.x) * (x - center.x) + (y - center.y) * (y - center.y)) <= radius;
   }
 
   checkCollisionWithBall(ball) {
@@ -272,7 +278,7 @@ class Object {
     const y = center.y;
 
     const d = Math.abs(a * x + b * y + c) / Math.sqrt(a * a + b * b);
-    return d < radius;
+    return d <= radius;
   }
 
 }

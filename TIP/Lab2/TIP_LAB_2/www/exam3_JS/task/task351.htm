@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>351</title>
+        <link rel="stylesheet" href="../../styles.css">
+        <link rel="stylesheet" href="../../example_3/task_3_1_2_EEV/styles.css">
+        <link rel="stylesheet" href="styles.css">
+        <script defer src="script/index.js"></script>
+    </head>
+    <body onload="moveEarth()">
+        <h3>Пример использования слоёв: движение изображения с вращающимся спутником</h3>
+        <form name="form1">
+            <input type="button" value="Ускорить спутник" onClick="moveMoon()">
+            <input type="button" value="Тормоз спутника" onClick="stopMoon()">
+            <input type="button" value="Ускорить влево" onClick="moveEarth()">
+            <input type="button" value="Стоп влево" onClick="stopEarth()">
+            <input type="button" value="Ускорить слой" onClick="rotateLayout()">
+        </form>
+        <br>
+        <table class="animation-table">
+            <tr>
+                <td>
+                    <div id="animation-div" class="animation-div">
+                        <img src="images1/earth.png" name="earth" id="earthId" class="earth">
+                        <img src="images1/moon.png" name="moon" id="moonId" class="moon">
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+
+</html>

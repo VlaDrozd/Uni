@@ -12,30 +12,35 @@
   <h2>Вычисление среднемесячного дохода студента Ермакова</h2>
   <p>Введите полученные Вами суммы (вместо сумм по умолчанию)за месяцы:
   <FORM name="form1">
-    январь: <input name="январь" id="m1" type="text" size=8 value="125.55">
-    февраль: <input id="февраль" type="text" size=8 value="135.55">
-    март: <input id="март" type="text" size=8 value="145.55">
-    апрель: <input id="апрель" type="text" size=8 value="155.55">
-    май: <input id="май" type="text" size=8 value="165.55">
-    июнь: <input id="июнь" type="text" size=8 value="175.55">
+    январь: <input name="январь" id="январь" type="text" size=8 value="175.55">
+    февраль: <input id="февраль" type="text" size=8 value="175.55">
+    март: <input id="март" type="text" size=8 value="175.55">
+    апрель: <input id="апрель" type="text" size=8 value="175.55">
+    май: <input id="май" type="text" size=8 value="175.55">
+    июнь: <input id="июнь" type="text" size=8 value="165.55">
     июль: <input id="июль" type="text" size=8 value="175.55">
     август: <input id="август" type="text" size=8 value="175.55">
     сентябрь: <input id="сентябрь" type="text" size=8 value="175.55">
     октябрь: <input id="октябрь" type="text" size=8 value="175.55">
     ноябрь: <input id="ноябрь" type="text" size=8 value="175.55">
     декабрь: <input id="декабрь" type="text" size=8 value="175.55">
-    Средний доход за <script>document.write(form1.elements.length)</script> месяцев:
+    Средний доход за
+    <script>document.write(form1.elements.length)</script> месяцев:
     <input type="text" size=8 name="result"><br><br>
     <input type="button" value="Вычислить" onClick="income(form1)">&nbsp;&nbsp;&nbsp;&nbsp;
     <input type="reset" value="Обновить">
   </FORM>
   <script>
     function income(ob_frm) {
-      var x1 = new Array();
-      for (var i=0; i<ob_frm.elements.length-3; i++) {x1[i] = 1.0*ob_frm.elements[i].value}
-      inc_mean = Math.round (mean(x1)*1000)/1000;
-      ob_frm.result.value = inc_mean;
+      const ans = [...ob_frm.elements].slice(0, 12).reduce((acc, el, id, arr) => {
+        return [
+          acc[0] + (+el.value) / arr.length,
+          +el.value < acc[1].value ? { value: +el.value, name: el.id } : acc[1],
+          +el.value > acc[2].value ? { value: +el.value, name: el.id } : acc[2]
+        ]
+      }, [0, { value: +ob_frm.elements[0].value, name: 'январь' }, { value: 0, name: '' }]);
     }
+
   </script>
 </body>
 

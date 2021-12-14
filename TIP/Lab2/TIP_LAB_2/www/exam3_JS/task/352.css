@@ -1,0 +1,50 @@
+html {
+    height: 100%;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.space {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("images1/space.jpg");
+    background-size: cover;
+}
+
+.sun {
+    width: 200px;
+    height: 200px;
+}
+
+.earth-div {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    width: 100px;
+    height: 100px;
+}
+
+.earth-planet {
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    width: 40px;
+}
+
+.moon-planet {
+    position: absolute;
+    width: 20px;
+    left: 60px;
+    top: 60px;
+}

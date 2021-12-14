@@ -1,7 +1,7 @@
 .ball {
   width: 100px;
   height: 100px;
-  background: url('../img/ball.png') no-repeat;
+  background: url('./img/ball.png') no-repeat;
   background-position: center;
   background-size: contain;
 }
@@ -12,7 +12,7 @@
   z-index: 2;
   width: 150px;
   height: 150px;
-  background: url('../img/basket.png') no-repeat;
+  background: url('./img/basket.png') no-repeat;
   background-position: top;
   background-size: contain;
 }
