@@ -16,23 +16,24 @@ class Engine {
     this._size.y = sizeY;
     this._parentElement.style.width = sizeX + 'px';
     this._parentElement.style.height = sizeY + 'px';
-    this._bounds = this.getBunds(this._size.x, this._size.y);
+    this._bounds = this.getBunds(sizeX, sizeY);
+    console.log(sizeX, sizeY);
 
     this.addObject(new Object(ball));
     this._basket = new Basket(basket);
 
-    setTimeout(() => {
-      this._objects.forEach(object => object.update(1000 / 1000 / this._FPS))
-    }, 1000) 
+    // setTimeout(() => {
+    //   this._objects.forEach(object => object.update(1000 / 1000 / this._FPS))
+    // }, 1000) 
 
-    // setInterval(() => {
-    //   this._objects.forEach(object => object.update(1000 / 1000 / this._FPS));
-    //   prevMousepos.x = currentMousePos.x;
-    //   prevMousepos.y = currentMousePos.y;
-    //   currentMousePos.x = mousepos.x;
-    //   currentMousePos.y = mousepos.y;
-    //   this._scoreElem.innerText = this._score;
-    // }, 1000 / this._FPS);
+    setInterval(() => {
+      this._objects.forEach(object => object.update(1000 / 1000 / this._FPS));
+      prevMousepos.x = currentMousePos.x;
+      prevMousepos.y = currentMousePos.y;
+      currentMousePos.x = mousepos.x;
+      currentMousePos.y = mousepos.y;
+      this._scoreElem.innerText = this._score;
+    }, 1000 / this._FPS);
   }
 
   addObject(object) {
@@ -45,13 +46,12 @@ class Engine {
   }
 
   checkBounds(bounds, object) {
-    const top = !object.checkCollisionWithLine(bounds[0], bounds[1]);
-    const right = !object.checkCollisionWithLine(bounds[1], bounds[2]);
-    const bottom = !object.checkCollisionWithLine(bounds[2], bounds[3]);
-    const left = !object.checkCollisionWithLine(bounds[3], bounds[0]);
+    const top = !object.checkCollisionWithLine(this._bounds[0], this._bounds[1]);
+    const right = !object.checkCollisionWithLine(this._bounds[1], this._bounds[2]);
+    const bottom = !object.checkCollisionWithLine(this._bounds[2], this._bounds[3]);
+    const left = !object.checkCollisionWithLine(this._bounds[3], this._bounds[0]);
     const basket = !object.checkCollisionWithDot(this._basket._bounds[1]);
 
-    console.log(top, right, bottom, left, basket);
 
     if (this._basket.checkTrigger(object)) {
       this._score += 1;
@@ -67,33 +67,32 @@ class Engine {
   getPosByBounds(bounds, pos, width, height, object) {
     let isHorizontal = false;
 
-    if (!object.checkCollisionWithLine(bounds[3], bounds[0])) {
+    if (object.checkCollisionWithLine(this._bounds[0], this._bounds[1])) {
       isHorizontal = true;
-      pos.x = bounds[0].x + width / 2;
+      pos.y = this._bounds[0].y + height / 2;
     }
 
-    if (!object.checkCollisionWithLine(bounds[0], bounds[1])) {
-      pos.y = bounds[0].y + height / 2;
-    }
-
-    if (!object.checkCollisionWithLine(bounds[1], bounds[2])) {
-      isHorizontal = true;
+    if (object.checkCollisionWithLine(this._bounds[1], this._bounds[2])) {
       pos.x = this._bounds[2].x - width / 2;
     }
 
-    if (!object.checkCollisionWithLine(bounds[2], bounds[3])) {
+    if (object.checkCollisionWithLine(this._bounds[2], this._bounds[3])) {
+      isHorizontal = true;
       pos.y = this._bounds[2].y - height / 2;
+    }
+
+    if (object.checkCollisionWithLine(this._bounds[3], this._bounds[0])) {
+      pos.x = this._bounds[0].x + width / 2 ;
     }
 
     if (object.checkCollisionWithDot(this._basket._bounds[1])) {
       if (this._basket._bounds[1].x < pos.x) {
-        pos.x = this._basket._bounds[1].x + width / 2 + 5;
+        pos.x = this._basket._bounds[1].x + width / 2;
       }
   
       if (this._basket._bounds[1].x > pos.x) {
-        pos.x = this._basket._bounds[1].x - width / 2 - 5;
+        pos.x = this._basket._bounds[1].x - width / 2;
       }
-      isHorizontal = true;
     }
 
     return [pos, isHorizontal];
@@ -134,8 +133,9 @@ class Object {
 
     this.bounds = this.getBounds(this._position.x, this._position.y);
 
-    this._element.addEventListener('mousedown', () => {
+    this._element.addEventListener('mousedown', (e) => {
       this._mouseDown = true;
+      e.preventDefault();
     });
 
     document.addEventListener('mouseup', () => {
@@ -189,12 +189,11 @@ class Object {
       x = newPos.x;
       y = newPos.y;
       newBounds = this.getBounds(x, y);
-      if (isHorizontal || x < 60 || x > engine._size.x - 60) { 
-        this.addForce(new Force(-this._speed.x * 100, -this._speed.y * 100, 2));
-      } else {
+      if (isHorizontal) { 
         this.addForce(new Force(this._speed.x * 100, -this._speed.y * 100, 2));
+      } else {
+        this.addForce(new Force(-this._speed.x * 100, -this._speed.y * 100, 2));
       }
-      
     }
 
     if (this._position.x != x || this._position.y != y) {
@@ -278,7 +277,8 @@ class Object {
     const y = center.y;
 
     const d = Math.abs(a * x + b * y + c) / Math.sqrt(a * a + b * b);
-    return d <= radius;
+
+    return d < radius;
   }
 
 }
