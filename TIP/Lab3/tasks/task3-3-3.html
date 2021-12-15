@@ -19,10 +19,8 @@
   <button onclick="calc()">Calc</button>
   <script>
     const calc = () => {
-      console.log(form.elements);
       const sum = [...form.elements].reduce((acc, el, index,arr) => {
         acc += Number(el.value) / arr.length;
-        console.log(acc);
         return acc;
       }, 0);
       alert(sum);

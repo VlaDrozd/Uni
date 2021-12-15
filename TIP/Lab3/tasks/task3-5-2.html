@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="352.css">
+</head>
+<body onload="startMovement()">
+    <div class="space" id="space">
+        <img src="../images/sun.png" class="sun">
+        <div name="earth" id="earthId" class="earth-div">
+            <img src="../images/earth.png" class="earth-planet">
+            <img src="../images/moon.png" name="moon" id="moonId" class="moon-planet">
+        </div>
+    </div>
+    <script>      
+    const space = document.getElementById("space");
+    const earth = document.getElementById("earthId");
+    let earthInterval = 20;
+    let moonInterval = 10;
+    let earthID = 10;
+    let moonID = 10;
+    let earthAngle;
+    let earthRadius;
+    let earthXBegin;
+    let earthYBegin;
+    let moonAngle;
+    let moonRadius;
+    let moonXBegin;
+    let moonYBegin;
+
+    function startMovement() {
+        moveEarth();
+        moveMoon();
+    }
+
+    function moveEarth() {
+        earthAngle = 0;
+        earthRadius = 250;
+        earthXBegin = space.offsetWidth / 2.2;
+        earthYBegin = space.offsetHeight / 2;
+
+        earthID = setInterval(rotateEarth, earthInterval);
+        if (earthInterval > 0) {
+            earthInterval -= 5;
+        }
+    }
+
+    function rotateEarth() {
+        let rad = earthAngle * Math.PI / 180;    
+        earth.style.left = (earthXBegin + earthRadius * Math.sin(rad)) + 'px';
+        earth.style.top = (earthYBegin - earthRadius * Math.cos(rad)) + 'px';
+        earthAngle += 1;
+        if (earthAngle >= 360) earthAngle = 0;
+    }
+
+    function moveMoon() {
+        moonAngle = 0;
+        moonRadius = 100;
+        moonXBegin = earth.offsetWidth / 2;
+        moonYBegin = earth.offsetHeight / 2;
+
+        moonID = setInterval(rotateMoon, moonInterval);
+        if (moonInterval > 0) {
+            moonInterval -= 5;
+        }
+    }
+
+    function rotateMoon() {
+        let rad = moonAngle * Math.PI / 180;
+        const earth = document.getElementById("moonId");
+        earth.style.left = (moonXBegin + moonRadius * Math.sin(rad)) + 'px';
+        earth.style.top = (moonYBegin - moonRadius * Math.cos(rad)) + 'px';
+        moonAngle += 1;
+        if (moonAngle >= 360) moonAngle = 0;
+    }
+    </script>
+</body>
+</html>

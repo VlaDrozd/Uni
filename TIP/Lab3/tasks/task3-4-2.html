@@ -24,23 +24,34 @@
     октябрь: <input id="октябрь" type="text" size=8 value="175.55">
     ноябрь: <input id="ноябрь" type="text" size=8 value="175.55">
     декабрь: <input id="декабрь" type="text" size=8 value="175.55">
-    Средний доход за
-    <script>document.write(form1.elements.length)</script> месяцев:
-    <input type="text" size=8 name="result"><br><br>
+    Средний доход за <script>document.write(form1.elements.length)</script> месяцев:
+    <input type="text" size=8 name="sr"><br><br>
+    Минимальный месяц по доходам месяцев:
+    <input type="text" size=8 name="minName"><br><br>
+    Минимальный доходов:
+    <input type="text" size=8 name="minDohod"><br><br>
+    Максимальный месяц по доходам месяцев:
+    <input type="text" size=8 name="maxName"><br><br>  
+    Максимальный доходов:
+    <input type="text" size=8 name="maxDohod"><br><br>
     <input type="button" value="Вычислить" onClick="income(form1)">&nbsp;&nbsp;&nbsp;&nbsp;
     <input type="reset" value="Обновить">
   </FORM>
   <script>
-    function income(ob_frm) {
-      const ans = [...ob_frm.elements].slice(0, 12).reduce((acc, el, id, arr) => {
+    function income(form) {
+      const [srDohod, { value: minValue, name: minName }, { value: maxValue, name: maxName }] = [...form.elements].slice(0, 12).reduce((acc, el, id, arr) => {
         return [
           acc[0] + (+el.value) / arr.length,
           +el.value < acc[1].value ? { value: +el.value, name: el.id } : acc[1],
           +el.value > acc[2].value ? { value: +el.value, name: el.id } : acc[2]
         ]
-      }, [0, { value: +ob_frm.elements[0].value, name: 'январь' }, { value: 0, name: '' }]);
+      }, [0, { value: +form.elements[0].value, name: form.elements[0].id }, { value: +form.elements[0].value, name: form.elements[0].id }]);
+      form.elements[12].value = srDohod;
+      form.elements[13].value = minName;
+      form.elements[14].value = minValue;
+      form.elements[15].value = maxName;
+      form.elements[16].value = maxValue;
     }
-
   </script>
 </body>
 

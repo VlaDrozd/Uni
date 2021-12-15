@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="styles.css">
+        <ADLIST src="../images/1.jpg"  duration=2000></ADLIST>
+        <ADLIST src="../images/2.jpg"  duration=2000></ADLIST>
+        <ADLIST src="../images/3.jpg"  duration=2000></ADLIST>
+        <ADLIST src="../images/4.jpg"  duration=2000></ADLIST>
+        <ADLIST src="../images/5.jpg"  duration=2000></ADLIST>
+        <ADLIST src="../images/6.jpg"  duration=2000></ADLIST>
+        <ADLIST src="../mages/7.jpg"  duration=2000></ADLIST>
+        <ADLIST src="../images/8.jpg"  duration=2000></ADLIST>
+        <ADLIST src="../images/9.jpg"  duration=2000></ADLIST>
+        <ADLIST src="../images/10.jpg"  duration=2000></ADLIST>
+
+    </head>
+
+    <body onload="window.tm = setTimeout(skipImage, 1);"
+        onunload="clearTimeout(window.tm);">
+        <main id="main">
+            <h4>Периодически сменяющиеся изображения.</h4>
+            <div>
+                <img ID="ad" SRC="../images/1.jpg" width="300">
+            </div>
+        </main>
+        <script>
+            let oAdSet = document.getElementsByTagName("ADLIST");
+            oAdSet.current = 0;
+            let oNextImage = document.createElement("IMG");
+
+            function preLoad() {
+                oNextImage.onerror = preLoad;
+                oNextImage.src = oAdSet[oAdSet.current].getAttribute("src");
+                oNextImage.duration = oAdSet[oAdSet.current].getAttribute("duration");
+                if (null === oNextImage.duration) {
+                    oNextImage.duration = 2000; 
+                }
+                if (++oAdSet.current === oAdSet.length) {
+                    oAdSet.current = 0; 
+                }
+            }
+
+            function skipImage() {
+                if (oNextImage.complete) {
+                    document.all.ad.src = oNextImage.src;
+                    let duration = oNextImage.duration;
+                    preLoad();
+                    window.tm = setTimeout(skipImage, duration);
+                }
+                else {
+                    window.tm = setTimeout(skipImage, 10);
+                }        
+            }
+
+            preLoad();
+        </script>
+    </body>
+
+</html>

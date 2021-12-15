@@ -9,94 +9,38 @@
 </head>
 
 <body>
-  <input type="button" value="Переход от градусов по Цельсию к градусам по Фаренгейту" ondblclick="inputCelsToFah();">
-  <br><br>
-  <input type="button" value="Переход от градусов по Фаренгейту к градусам по Цельсию" ondblclick="inputFahToCels();">
-  <br><br>
-  <input type="button" value="Переход от градусов по Цельсию к градусам по Реомюру" ondblclick="inputCelToReum();">
-  <br><br>
-  <input type="button" value="Переход от градусов по Фаренгейту к градусам по Реомюру" ondblclick="inputFahToReum();">
-  <br><br>
-  <input type="button" value="Переход от градусов по Реомюру к градусам по Цельсию" ondblclick="inputReumToCel();">
-  <br><br>
-  <input type="button" value="Переход от градусов по Реомюру к градусам по Фаренгейту" ondblclick="inputReumToFah();">
+  <button onClick="calcTemp('CF')">Цельсий-Фаренгейт</button>
+  <button onClick="calcTemp('FC')">Фаренгейт-Цельсий</button><br><br>
+  <button onClick="calcTemp('CR')">Цельсий-Реомюр</button>
+  <button onClick="calcTemp('RC')">Реомюр-Цельсий</button><br><br>
+  <button onClick="calcTemp('FR')">Фаренгейт-Реомюр</button>
+  <button onClick="calcTemp('RF')">Реомюр-Фаренгейт</button><br><br><br>
   <script language="JavaScript">
-
-    // Цельсий в Фаренгейт
-    function inputCelsToFah() {
-      const cels = prompt("Введите значение температуры в градусах по цельсию", "Введите температуру");
-      const ansFah = doFahCalcFromCels(cels);
-      alert(cels + " градусов по Цельсию равно " + ansFah + " градусов по Фаренгейту");
-    }
-
-    function doFahCalcFromCels(cels) {
-      const ans = 1.8 * Number(cels) + 32;
-      return ans;
-    }
-
-    // Фаренгейт в Цельсий
-    function inputFahToCels() {
-      const fah = prompt("Введите значение температуры в градусах по Фаренгейту", "Введите температуру");
-      const ansCel = doCelCalcFromFah(fah);
-      alert(fah + " градусов по Фаренгейту равно " + ansCel + " градусов по Цельсию");
-    }
-
-    function doCelCalcFromFah(fah) {
-      const ans = Number(fah) - 32 / 1.8;
-      return ans;
-    }
-
-
-    // Цельсий в Реомюр
-    function inputCelToReum() {
-      const cels = prompt("Введите значение температуры в градусах по цельсию", "Введите температуру");
-      const ansReum = doReumFromCels(cels);
-      alert(cels + " градусов по Цельсию равно " + ansReum + " градусов по Реомеру");
-    }
-
-    function doReumFromCels(cels) {
-      const ans = Number(cels) * 4 / 5;
-      return ans;
-    }
-
-    // Фаренгейт в Реомюр
-    function inputFahToReum() {
-      const fah = prompt("Введите значение температуры в градусах по Фаренгейту", "Введите температуру");
-      const ansReum = doReumFromFah(fah);
-      alert(fah + " градусов по Фаренгейту равно " + ansReum + " градусов по Реомеру");
-    }
-
-    function doReumFromFah(fah) {
-      const ans = (Number(fah) - 32) * 0.44;
-      return ans;
-    }
-
-    // Реомюр в Фаренгейт
-    function inputReumToFah() {
-      const reum = prompt("Введите значение температуры в градусах по Реомеру", "Введите температуру");
-      const ansFah = doFahFromReum(reum);
-      alert(reum + " градусов по Реомеру равно " + ansFah + " градусов по Фаренгейту");
-    }
-
-    function doFahFromReum(reum) {
-      const ans = Number(reum) * 9 / 4;
-      return ans;
-    }
-
-    // Реомюр в Цельсий
-    function inputReumToCels() {
-      const reum = prompt("Введите значение температуры в градусах по Реомеру", "Введите температуру");
-      const ansCels = doCelsFromReum(reum);
-      alert(reum + " градусов по Реомеру равно " + ansCels + " градусов по Цельсию");
-    }
-
-    function doCelsFromReum(reum) {
-      const ans = Number(reum) * 5 / 4;
-      return ans;
-    }
-
-
-    
+      const calcTemp = (tempType) => {
+        let temperature = 0, finalTemperature = 0;
+        temperature = parseInt(prompt("Введите значение температуры в градусах", "0"));
+        switch (tempType) {
+          case "CF":
+            finalTemperature = (temperature * 1.8) + 32;
+            break;
+          case "FC":
+            finalTemperature = (temperature - 32) / 1.8;
+            break;
+          case "CR":
+            finalTemperature = 1.25 * temperature;
+            break;
+          case "RC":
+            finalTemperature = 0.8 * temperature;
+            break;
+          case "FR":
+            finalTemperature = (temperature - 32) / 2.25;
+            break;
+          case "RF":
+            finalTemperature = (2.25 * temperature) + 32;
+            break;
+        }
+        alert("Перевденное значение градусов =" + finalTemperature);
+      }
   </script>
 </body>
 

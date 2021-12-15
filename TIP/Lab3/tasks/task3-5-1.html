@@ -4,83 +4,90 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Document</title>
 </head>
-<body>
-  <body onload="initLine()">
-    <center>
-      <h3>Пример использования слоёв: движение изображения с вращающимся спутником</h3>
-      <FORM name="form1">
-        <input type="button" value="Ускорить спутник" onClick="initCircle()">
-        <input type="button" value="Ускорить вправо" onClick="initLine(); succLine()">
-        <input type="button" value="Вправо" onClick="initLine()">
-        <input type="button" value="Тормоз спутника" onClick="Circle=true">
-        <input type="button" value="Стоп вправо" onClick="Line=true">
-      </FORM>
-    </center>
-    <table width=878 height=185 border=4 bgcolor="silver" bordercolor="black">
-      <tr>
-        <td>
-          <div id="l1" style="position:absolute; left:24; background:silver; width:178; height:176; top:101;">
-            <img src="http://www.hedfiles.net/planet06.png" name="mycenter" ;
-              style="position:absolute; left:80; top: 80; width:40px; height:15px">
-            <img src="https://purepng.com/public/uploads/large/purepng.com-globe-burningnatureearthglobeplanetworldburn-961524675572r7tg9.png" name="myimage" ;
-              style="position:absolute; left:80; top:130; width:42px; height:23px">
-          </div>
-        </td>
-      </tr>
+  <body onload="moveEarth()">
+    <h3>Пример использования слоёв: движение изображения с вращающимся спутником</h3>
+    <form name="form1">
+        <input type="button" value="Ускорить спутник" onClick="moveMoon()">
+        <input type="button" value="Тормоз спутника" onClick="stopMoon()">
+        <input type="button" value="Ускорить влево" onClick="moveEarth()">
+        <input type="button" value="Стоп влево" onClick="stopEarth()">
+        <input type="button" value="Ускорить слой" onClick="rotateLayout()">
+    </form>
+    <br>
+    <table class="animation-table">
+        <tr>
+            <td>
+                <div id="animation-div" class="animation-div">
+                    <img src="../images/earth.png" name="earth" id="earthId" class="earth">
+                    <img src="../images/moon.png" name="moon" id="moonId" class="moon">
+                </div>
+            </td>
+        </tr>
     </table>
-    <SCRIPT LANGUAGE="JavaScript1.2">
-      var p1;     // текущая координата слоя
-      var sp1;    // приращение при движении слоя
-      var Circle = false;
-      var Line = false;
-      // установка начальных параметров перемещения слоя
-      function initLine() {
-        Line = false;
-        p1 = 24;
-        sp1 = 1;
-        l1.style.left = 24;
+    <script>
+      let postion = 600;   
+      let step = 1;
+      let interval = 50;
+      let interval1 = 50;
+      let earthID = 10;
+      let moonID = 10;
+
+      const animationContainer = document.getElementById("animation-div");
+
+      function moveEarth() {
+          clearInterval(earthID);
+          earthID = setInterval(move, interval1);
+          if (interval1 > 0) {
+              interval1 -= 5;
+          }
       }
-      //  сдвиг слоя на вычисленный шаг вправо
-      var timerLine = 10;
-      function succLine() {
-        sp1 = 1;
-        p1 += sp1;
-        if (p1 > 700) p1 = 24;
-        l1.style.left = p1;
-        timerLine = setTimeout(succLine(), 200);
-        if (Line == true) stoppedLine();
+
+      function move() {
+          postion -= step;
+          if (postion < 25) postion = 600;
+          animationContainer.style.left = postion + 'px';
       }
-      var timerCircle = 10;
-      function initCircle() {
-        timerCircle = setInterval(moveImage, 10);
+
+      function moveMoon() {
+          clearInterval(moonID);
+          moonID = setInterval(rotateMoon, interval);
+          if (interval > 0) {
+              interval -= 5;
+          }
       }
-      //  начальные установки для движения по окружности
-      var angle = 0;
-      var radius = 50;
-      var xbegin = 80;
-      var ybegin = 80;
-      var d = document;
-      //   движение изображения-спутника по окружности
-      function moveImage() {
-        var
-        rad = angle * Math.PI / 180;
-        //  вычисление координаты следующего положения изображения
-        d.myimage.style.pixelLeft = xbegin + radius * Math.sin(rad);
-        d.myimage.style.pixelTop = ybegin + radius * Math.cos(rad);
-        angle += 1;
-        if (angle >= 360) angle = 0;
-        if (Circle == true) stoppedCircle();
+
+      let angle = 0;
+      let radius = 170;
+      let xBegin = 130;
+      let yBegin = 190;
+
+      function rotateMoon() {
+          let rad = angle * Math.PI / 180;
+          const moon = document.getElementById("moonId");
+          moon.style.left = (xBegin + radius * Math.sin(rad)) + 'px';
+          moon.style.top = (yBegin - radius * Math.cos(rad)) + 'px';
+          angle += 1;
+          if (angle >= 360) angle = 0;
       }
-      /////////////
-      function stoppedCircle() {
-        clearInterval(timerCircle);
+
+      function rotateLayout() {
+        let degrees = 0;
+        setInterval(function(){
+          degrees++;
+          animationContainer.style.webkitTransform = 'rotate(' + degrees + 'deg)';
+        }, 50);
       }
-      function stoppedLine() {
-        clearTimeout(timerLine);
+
+      function stopMoon() {
+          clearInterval(moonID);
       }
-    </SCRIPT>
+
+      function stopEarth() {
+          clearInterval(earthID);
+      }
+    </script>
   </body>
-</body>
 </html>
