@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../example_3/task_3_1_2_EEV/styles.css">
+    <title>453</title>
+    <script>
+      function light_logo(ii, duration) {
+        ii = Number(ii);
+        ImageLogo.filters.revealtrans.Apply();
+        ImageLogo.filters.revealtrans.transition = ii;
+        ImageLogo.filters.revealtrans.duration = duration;
+        ImageLogo.style.visibility = "visible";
+        ImageLogo.filters.revealtrans.play();
+      }
+    </script>
+</head>
+
+<body style="background: #ccc;">
+    <h3>Эффекты перехода revealtrans().</h3>
+    <form name="form">
+        <label>Тип (от 0 до 23) <input name="trns" TYPE="text" value=10 size=3></label><br>
+        <label>Продолжительность <input name="duration" TYPE="text" value=5 size=3></label><br>
+        <button
+        onClick='ImageLogo.style.visibility="hidden";
+        light_logo(form.trns.value, form.duration.value);'>Применить</button>
+    </form>
+    <img id="ImageLogo" src="https://www.fonstola.ru/download.php?file=201111/1680x1050/fonstola.ru-60644.jpg" style="filter: revealtrans(); left: 50px; top: 188px; position: absolute" width="300">
+</body>
+
+</html>

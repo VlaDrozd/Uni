@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Задание</title>
+        <link rel="stylesheet" href="../../styles.css">
+        <link rel="stylesheet" href="../../example_3/task_3_1_2_EEV/styles.css">
+        <script>
+            function showFile(input) {
+              let file = input.files[0];
+              let reader = new FileReader();
+              let productCodes = new Array();
+              let productNames = new Array();
+              let productPrices = new Array();
+              let productFiles = new Array();
+          
+              reader.readAsText(file);
+          
+              reader.onload = function () {
+                let rows = reader.result.split("\n");
+                const oTable = document.getElementById("goodsTable");
+                rows.forEach(sRow => {
+                    let aData = sRow.split('#');
+
+                    let oTableRow = oTable.insertRow(1);
+                    let oNumberCell = oTableRow.insertCell(0);
+                    let oNameCell = oTableRow.insertCell(1);
+                    let oPriceCell = oTableRow.insertCell(2);
+                    let oLinkCell = oTableRow.insertCell(3);
+
+                    let oLink = document.createElement("a");
+                    var oLinkText = document.createTextNode("подробнее...");
+                    oLink.appendChild(oLinkText);
+                    oLink.setAttribute("href", "../data/" + aData[3]);
+
+                    oNumberCell.innerHTML = aData[0];
+                    oNameCell.innerHTML = aData[1];
+                    oPriceCell.innerHTML = aData[2];
+                    oLinkCell.appendChild(oLink);
+                });
+              };
+            }
+          </script>
+    </head>
+    <body>
+        <main style="margin-top: 300px; flex-direction: column;">
+            <input type="file" id="inputFile" onchange="showFile(this)" />
+            <table id="goodsTable" style="margin-top: 100px;">
+                <thead>
+                    <tr>
+                        <th>Номер</th>
+                        <th>Имя</th>
+                        <th>Цена</th>
+                        <th>Подробности</th>
+                    </tr>
+                </thead>
+        
+            </table>  
+        </main>  
+    </body>
+</html>

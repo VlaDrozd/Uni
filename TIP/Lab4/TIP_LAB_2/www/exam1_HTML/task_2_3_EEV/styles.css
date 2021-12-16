@@ -1,0 +1,34 @@
+.list img {
+   width: 150px;
+   border-radius: 5px;
+}
+
+.list-item {
+   display: flex;
+   align-items: center;
+   margin-top: 15px;
+   width: 290px;
+   justify-content: space-between;
+}
+
+.list {
+   margin-top: 30px;
+}
+
+.fashion-item-title {
+   margin-right: 15px;
+}
+
+.italy {
+   margin-top: 50px;
+}
+
+img {
+   width: 500px;
+}
+
+.paris {
+   margin-top: 150px;
+   margin-bottom: 50px;
+   align-self: center;
+}

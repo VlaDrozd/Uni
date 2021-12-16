@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Escape-последовательности</title>
+        <link rel="stylesheet" href="../../styles.css">
+        <link rel="stylesheet" href="../task_3_1_2_EEV/styles.css">
+    </head>
+    <body>
+       <main>
+         <button onclick="onAlertAll([['b', '\b'], ['t', '\t']])">\b (возврат на одну позицию)</button>
+         <button onclick="onAlert('\t')">\t (табуляция)</button>
+         <button onclick="onAlert('\f')">\f (переход на следующую страницу)</button>
+         <button onclick="onAlert('\n')">\n (переход на следующую строку)</button>
+         <button onclick="onAlert('\r')">\r (возврат каретки)</button>
+         <button onclick="onAlert('\”')">\” (двойная кавычка)</button> 
+         <button onclick="onAlert('\’')">\’ (одинарная кавычка - апостроф)</button>
+         <button onclick="onAlert('\\')">\\ (обратная косая черта - обратный слэдж)</button>
+         
+         
+       </main>
+
+
+
+
+      <script language="javascript">
+         const onAlert = (escapeSymbol) => {
+            alert(`пример использование escape-последовательности -> ${escapeSymbol}  <- пример использование escape-последовательности`);
+         }
+         const onAlertAll = (escapeSymbols) => {
+            let result = '';
+            escapeSymbols.forEach((escapeSymbolData) => {
+               result += `использование escape-последовательности ${escapeSymbolData[0]} -> ${escapeSymbolData[1]} <-\n`;
+            });
+            alert(result);
+         }
+      </script>
+    </body>
+</html>

@@ -1,80 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="352.css">
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+    .planet-system {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 500px;
+      width: 500px;
+    }
+
+    .planet-circle {
+      border: 3px solid white;
+      border-radius: 50%;
+      /*position: fixed;*/
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      position: absolute;
+    }
+
+    .moon-circle {
+      border: 1px solid white;
+      border-radius: 90%;
+      height: 150px;
+      width: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+    }
+
+    .earth-icon {
+      height: 80px;
+      width: 80px;
+      position: absolute;
+      top: 40px;
+    }
+
+    .moon-icon {
+      height: 50px;
+      width: 50px;
+      position: absolute;
+      top: -25px;
+    }
+
+    .sun-icon {
+      height: 350px;
+      width: 350px;
+    }
+
+    .galaxy-bg {
+      background-image: url("galaxy.jpeg");
+      background-size: cover;
+      height: 600px;
+      width: 800px;
+      position: relative;
+    }
+
+    .sun-icon-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @keyframes rotate360 {
+      to {
+        transform: rotate(-360deg);
+      }
+    }
+
+    @keyframes rotate360anotherSide {
+      to {
+        transform: rotate(+360deg);
+      }
+    }
+
+    .task-block {
+      padding: 50px;
+      width: 40%;
+      margin: 20px auto;
+    }
+  </style>
 </head>
-<body onload="startMovement()">
-    <div class="space" id="space">
-        <img src="../images/sun.png" class="sun">
-        <div name="earth" id="earthId" class="earth-div">
-            <img src="../images/earth.png" class="earth-planet">
-            <img src="../images/moon.png" name="moon" id="moonId" class="moon-planet">
+
+<body style="overflow: hidden;">
+  <button onclick="startSystem()">start in left side</button>
+  <button onclick="stopSystem()">stop</button>
+  <button onclick="lessSpeed()">less speed left</button>
+  <button onclick="moreSpeed()">more speed left</button>
+  <button onclick="lessSpeedRight()">less speed right</button>
+  <button onclick="moreSpeedRight()">more speed right</button>
+  <button onclick="changeDirection()">change direction in right side</button>
+  <button onclick="moreSpeedMoon()">moreSpeedMoon</button>
+  <div class="task-block galaxy-bg" id="task-3-4-2-result">
+    <div class="planet-system">
+      <div class="planet-circle" id="planet-circle">
+        <div class="moon-circle" id="moon-circle">
+          <img src="../images/moon.png" class="moon-icon" alt="moon" id="moon-icon">
+          <img src="../images/earth.png" class="earth-icon" alt="earth" id="earth-icon">
         </div>
+      </div>
+      <img src="../images/sun.png" class="sun-icon" alt="sun" id="sun-icon">
     </div>
-    <script>      
-    const space = document.getElementById("space");
-    const earth = document.getElementById("earthId");
-    let earthInterval = 20;
-    let moonInterval = 10;
-    let earthID = 10;
-    let moonID = 10;
-    let earthAngle;
-    let earthRadius;
-    let earthXBegin;
-    let earthYBegin;
-    let moonAngle;
-    let moonRadius;
-    let moonXBegin;
-    let moonYBegin;
-
-    function startMovement() {
-        moveEarth();
-        moveMoon();
-    }
-
-    function moveEarth() {
-        earthAngle = 0;
-        earthRadius = 250;
-        earthXBegin = space.offsetWidth / 2.2;
-        earthYBegin = space.offsetHeight / 2;
-
-        earthID = setInterval(rotateEarth, earthInterval);
-        if (earthInterval > 0) {
-            earthInterval -= 5;
-        }
-    }
-
-    function rotateEarth() {
-        let rad = earthAngle * Math.PI / 180;    
-        earth.style.left = (earthXBegin + earthRadius * Math.sin(rad)) + 'px';
-        earth.style.top = (earthYBegin - earthRadius * Math.cos(rad)) + 'px';
-        earthAngle += 1;
-        if (earthAngle >= 360) earthAngle = 0;
-    }
-
-    function moveMoon() {
-        moonAngle = 0;
-        moonRadius = 100;
-        moonXBegin = earth.offsetWidth / 2;
-        moonYBegin = earth.offsetHeight / 2;
-
-        moonID = setInterval(rotateMoon, moonInterval);
-        if (moonInterval > 0) {
-            moonInterval -= 5;
-        }
-    }
-
-    function rotateMoon() {
-        let rad = moonAngle * Math.PI / 180;
-        const earth = document.getElementById("moonId");
-        earth.style.left = (moonXBegin + moonRadius * Math.sin(rad)) + 'px';
-        earth.style.top = (moonYBegin - moonRadius * Math.cos(rad)) + 'px';
-        moonAngle += 1;
-        if (moonAngle >= 360) moonAngle = 0;
-    }
-    </script>
+  </div>
 </body>
+<script>
+  const earthIcon = document.getElementById('earth-icon');
+  const planetCircle = document.getElementById('planet-circle');
+  const moonCircle = document.getElementById('moon-circle');
+
+  let earthIconSpeed = 2;
+  let planetCircleSpeed = 4;
+  let moonCircleSpeed = 8;
+
+  function startSystem() {
+    earthIcon.style.animation = `${earthIconSpeed}s rotate360anotherSide infinite linear`;
+    planetCircle.style.animation = `${planetCircleSpeed}s  rotate360 infinite linear`;
+    moonCircle.style.animation = `${moonCircleSpeed}s rotate360 infinite linear`;
+  }
+
+  function stopSystem() {
+    earthIcon.style.animation = '0s';
+    planetCircle.style.animation = '0s';
+    moonCircle.style.animation = '0s';
+  }
+
+  function lessSpeed() {
+    earthIconSpeed = earthIconSpeed * 2;
+    planetCircleSpeed = planetCircleSpeed * 2;
+    moonCircleSpeed = moonCircleSpeed * 2;
+    earthIcon.style.animation = `${earthIconSpeed}s rotate360anotherSide infinite linear`;
+    planetCircle.style.animation = `${planetCircleSpeed}s  rotate360 infinite linear`;
+    moonCircle.style.animation = `${moonCircleSpeed}s rotate360 infinite linear`;
+  }
+
+  function moreSpeed() {
+    earthIconSpeed = earthIconSpeed / 2;
+    planetCircleSpeed = planetCircleSpeed / 2;
+    moonCircleSpeed = moonCircleSpeed / 2;
+    earthIcon.style.animation = `${earthIconSpeed}s rotate360anotherSide infinite linear`;
+    planetCircle.style.animation = `${planetCircleSpeed}s  rotate360 infinite linear`;
+    moonCircle.style.animation = `${moonCircleSpeed}s rotate360 infinite linear`;
+  }
+
+  function changeDirection() {
+    earthIcon.style.animation = `${earthIconSpeed}s rotate360 infinite linear`;
+    planetCircle.style.animation = `${planetCircleSpeed}s rotate360anotherSide infinite linear`;
+    moonCircle.style.animation = `${moonCircleSpeed}s rotate360anotherSide infinite linear`;
+  }
+
+  function lessSpeedRight() {
+    earthIconSpeed = earthIconSpeed * 2;
+    planetCircleSpeed = planetCircleSpeed * 2;
+    moonCircleSpeed = moonCircleSpeed * 2;
+    earthIcon.style.animation = `${earthIconSpeed}s rotate360 infinite linear`;
+    planetCircle.style.animation = `${planetCircleSpeed}s  rotate360anotherSide infinite linear`;
+    moonCircle.style.animation = `${moonCircleSpeed}s rotate360anotherSide infinite linear`;
+  }
+
+  function moreSpeedRight() {
+    earthIconSpeed = earthIconSpeed / 2;
+    planetCircleSpeed = planetCircleSpeed / 2;
+    moonCircleSpeed = moonCircleSpeed / 2;
+    earthIcon.style.animation = `${earthIconSpeed}s rotate360 infinite linear`;
+    planetCircle.style.animation = `${planetCircleSpeed}s  rotate360anotherSide infinite linear`;
+    moonCircle.style.animation = `${moonCircleSpeed}s rotate360anotherSide infinite linear`;
+  }
+
+  function moreSpeedMoon() {
+    moonCircleSpeed = moonCircleSpeed / 2;
+    earthIcon.style.animation = `${earthIconSpeed}s rotate360 infinite linear`;
+    planetCircle.style.animation = `${planetCircleSpeed}s  rotate360anotherSide infinite linear`;
+    moonCircle.style.animation = `${moonCircleSpeed}s rotate360 infinite linear`;
+  }
+
+</script>
+
 </html>

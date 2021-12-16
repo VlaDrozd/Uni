@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Alert</title>
+        <link rel="stylesheet" href="../../styles.css">
+        <link rel="stylesheet" href="../task_3_1_2_EEV/styles.css">
+    </head>
+    <body>
+       <main>
+         <button onclick="onAlert()">Alert</button>
+       </main>
+
+
+
+
+      <script language="javascript">
+         const onAlert = () => {
+            // Объявляем переменные с данными о себе
+            const EgorData = {
+               name: "Егор",
+               surname: "Емельянов",
+               age: 20,
+               info: "Учусь на АСОИ.",
+            }
+
+            const PashaData = {
+               name: "Паша",
+               surname: "Букшта",
+               age: 20,
+               info: "Люблю питсу!",
+            }
+
+            // Случайным образом выбираем Егора или Пашу
+            const person = Math.random() < 0.5 ? EgorData : PashaData;
+
+            // Выводим информацию о выбранном ранее человеке.
+            alert(`Привет, меня зовут ${person.name} ${person.surname}. Мне ${person.age} лет. ${person.info}`)
+         }
+      </script>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+  <title>454</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../../example_3/task_3_1_2_EEV/styles.css">
+  <script>
+    function lead0(val) {
+      return (val < 10) ? "0" + val.toString() : val;
+    }
+
+    function buildTime() {
+      var time = new Date();
+      var ampm = " AM";
+      var h = time.getHours();
+      if (h > 12) {
+        h = h - 12;
+        ampm = " PM";
+      }
+
+      return lead0(h) + 
+            ":" + lead0(time.getMinutes()) + 
+            ":" + lead0(time.getSeconds()) + 
+            ":" + lead0(time.getMilliseconds()) + 
+            parseInt(`${window.performance.now()}`.split('.')[1]?.slice(0, 2)) + 
+            ampm;
+    }
+
+    function tick() {
+      document.all.clock.innerText = buildTime();
+    }
+  </script>
+</head>
+
+<body onunload="if (null != window.tmr) clearInterval(window.tmr);" ONLOAD="window.tmr = setInterval('tick()', 1.0);">
+  <h1>Цифровые часы</h1>
+  <p>Запрограммировано с использованием HTML.
+    Текущее время (AM/PM - до/после полудня):
+    <span id="clock">
+      <script>
+        document.write(buildTime());
+      </script>
+    </span>.
+  </p>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Alert/Prompt</title>
+        <link rel="stylesheet" href="../../styles.css">
+        <link rel="stylesheet" href="../task_3_1_2_EEV/styles.css">
+    </head>
+    <body>
+       <main>
+         <button onclick="onAlert()">Вывод сообщения</button>
+         <button onclick="onPrompt()">Поменять текст сообщения</button>
+       </main>
+
+
+
+
+      <script language="javascript">
+         // Объявляем переменную, которую будем выводить с помощью alert и изменять с помощью prompt
+         let message = 'Сообщение по умолчанию';
+
+         const onAlert = () => {
+            // Выводим сообщение из переменной.
+            alert(message);
+         }
+
+         const onPrompt = () => {
+            // Обновляем значение в переменной
+            message = prompt('Введите новый текст сообщения', message);
+         }
+      </script>
+    </body>
+</html>

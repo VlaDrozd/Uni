@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <title>Простой калькулятор</title>
+        <link rel="stylesheet" href="../../styles.css">
+        <link rel="stylesheet" href="../task_3_1_2_EEV/styles.css">
+    </head>
+    <body>
+       <main>
+         <label for="calculate">Введите выражение:</label>
+         <input id="calculate" id="calculate">
+         <button onclick="onCalc()">Посчитать</button>
+       </main>
+
+
+
+
+      <script language="javascript">
+         const regExp = /[0-9]|\./gi
+
+         function setup() {
+            const dataToCalculateInput = document.getElementById("calculate");
+
+            onCalc = () => {
+               const { value } = dataToCalculateInput;
+               const regExp2 = value.replace(/[^-()\d/*+%. ]/g, '');
+
+               const replacedUnaryOperationsArray = [];
+
+               for (let i = 0; i < regExp2.length; i++) {
+                     if (regExp2[i] === '+' || regExp2[i] === '-') {
+                        const operator = regExp2[i] === '+' ? '+' : '-';
+
+                        if (regExp2[i+1] === operator) {
+                        if (regExp2[i-1]?.search(regExp) > -1) {
+
+                        let j = i-1;
+                        let number = '';
+
+                        while(regExp2[j]?.search(regExp) > -1) {
+                           number = replacedUnaryOperationsArray.pop() + number;
+                           j--;
+                        }
+
+                        replacedUnaryOperationsArray.push(`(${number}${operator}1)`);
+                        i += 1;
+                     } else {
+                        let j = i + 2;
+                        let number = '';
+
+                        while(regExp2[j]?.search(regExp) > -1) {
+                           number += regExp2[j];
+                           j++;
+                        }
+
+                        replacedUnaryOperationsArray.push(`(${number}${operator}1)`);
+
+                        i += (number.length + 1);
+                     }
+                     } else {
+                        replacedUnaryOperationsArray.push(regExp2[i]);
+                     }
+                     } else {
+                        replacedUnaryOperationsArray.push(regExp2[i]);
+                     }
+               }
+
+               const dataToCalculate = replacedUnaryOperationsArray.join('');
+
+               const calculationResult = eval(dataToCalculate);
+
+               if ( typeof calculationResult !== undefined
+                  && calculationResult !== null
+                  && !isNaN(parseInt(calculationResult))) {
+                     alert(calculationResult);
+               } else {
+                  alert("Invalid data entered");
+               }
+            };
+         }
+
+         setup();
+      </script>
+    </body>
+</html>

@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Alert/Confirm/Prompt</title>
+        <link rel="stylesheet" href="../../styles.css">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+       <main>
+         <button onclick="onAlert()">Alert</button>
+         <button onclick="onConfirm()">Confirm</button>
+         <button onclick="onPrompt()">Prompt</button>
+       </main>
+
+
+
+       
+      <script language="javascript">
+         const onAlert = () => {
+            alert("Привет Егор и Паша!!!")
+         }
+
+         const onConfirm = () => {
+            confirm("Это confirm-подтверждение. Сделайте выбор: yes/no")
+         }
+
+         const onPrompt = () => {
+            prompt("Как вас зовут?", "Емельянов Егор Владимирович")
+         }
+      </script>
+    </body>
+</html>

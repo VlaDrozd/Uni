@@ -1,0 +1,3 @@
+003#Playstation 5#2000#ps.txt
+002#Xbox Series X#1700#xsx.txt
+001#Xbox Series S#1000#xss.txt

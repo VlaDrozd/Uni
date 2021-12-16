@@ -12,50 +12,96 @@
     <option value="-">-</option>
     <option value="*">*</option>
     <option value="/">/</option>
-    <option value="++">++</option>
-    <option value="--">--</option>
+    <!-- <option value="++A">++A</option>
+    <option value="--A">--A</option>
+    <option value="A++">A++</option>
+    <option value="A--">A--</option> -->
   </select><br>
   <input type="text" name="num1" id="numInput1" placeholder="Число 1"><br>
   <input type="text" name="num2" id="numInput2" placeholder="Число 2"><br>
-  <button id="calc" onclick="calc()">Clculate</button>
+  <button id="calc" onclick="getOPeration()">Clculate</button>
   <script>
     let operator = operatorInput.value;
     const setOperation = () => {
       operator = operatorInput.value;
-      if (operator === '++' || operator === '--') {
-        numInput2.style.display = 'none';
-      } else {
-        numInput2.style.display = 'block';
-      }
     }
-    const calc = () => {
-      let num1 = +numInput1.value;
-      let num2 = +numInput2.value;
+    const calc = (num1, num2) => {
       switch(operator) {
         case '+':
-          alert(num1 + num2);
-          break;
-        case '-':
-          alert(num1 - num2);
-          break;
-        case '*':
-          alert(num1 * num2);
-          break;
-        case '/':
-          alert(num1 / num2);
-          break;
-        case '%': 
-          alert(num1 % num2);
-          break;
-        case '++':
-          alert(++num1);
-          break;
-        case '--':
-          alert(--num1);
-          break;
-      }
-      
+          return num1 + num2;
 
+        case '-':
+         return num1 - num2;
+        
+        case '*':
+          return num1 * num2;
+    
+        case '/':
+          return num1 / num2;
+       
+        case '%': 
+          return num1 % num2;
+         
+        default: 
+          alert('Неизвестная операция');
+      }
+    }
+
+    const getOPeration = () => {
+      let num1 = numInput1.value;
+      let num2 = numInput2.value;
+      const isPrevPlus1 = num1[0] === '+';
+      const isPrevPlus2 = num2[0] === '+';
+      const isPrevMinus1 = num1[0] === '-';
+      const isPrevMinus2 = num2[0] === '-';
+      const isPostPlus1 = num1[num1.length - 1] === '+';
+      const isPostPlus2 = num2[num2.length - 1] === '+';
+      const isPostMinus1 = num1[num1.length - 1] === '-';
+      const isPostMinus2 = num2[num2.length - 1] === '-';
+
+      if (isPrevPlus1) {
+        num1 = +num1.slice(2) + 1;
+      } 
+      
+      if (isPrevPlus2) {
+        num2 = +num2.slice(2) + 1;
+      }
+
+      if (isPrevMinus1) {
+        num1 = +num1.slice(2) - 1;
+      } 
+      
+      if (isPrevMinus2) {
+        num2 = +num2.slice(2) - 1;
+      }
+
+      if (isPostPlus1 || isPostMinus1) {
+        num1 = num1.slice(0, -2);
+      }
+
+      if (isPostPlus2 || isPostMinus2) {
+        num2 = num2.slice(0, -2);
+      } 
+
+      let res = calc(+num1, +num2);
+
+      if(isPostPlus1) {
+        res = res + 1
+      }
+
+      if(isPostPlus2) {
+        res = res + 1;
+      }
+
+      if(isPostMinus1) {
+        res = res - 1
+      }
+
+      if(isPostMinus2) {
+        res = res - 1;
+      }
+
+      alert(res);
     }
   </script>
 </body>

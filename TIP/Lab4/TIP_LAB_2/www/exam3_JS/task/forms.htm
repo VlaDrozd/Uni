@@ -1,0 +1,92 @@
+<html>
+	<head>
+		<title>Работа с операторами в JavaScript</title>
+      <link rel="stylesheet" href="../../styles.css">
+      <link rel="stylesheet" href="../../example_3/task_3_1_2_EEV/styles.css">
+      <link rel="stylesheet" href="styles.css">
+      <script src="script/index.js"></script>
+	</head>
+	<body>
+      <main id="main" style="width: auto; height: auto;">
+         <div id="task333">
+            <h4>Вычисление среднемесячного дохода</h4>
+            <p>Введите месячную прибыль:</p>
+            <form name="form">
+               январь: <input type="number"><br><br>
+               февраль: <input type="number">&nbsp;<br><br>
+               март: <input type="number">&nbsp;<br><br>
+               апрель: <input type="number">&nbsp;<br><br>
+               май: <input type="number">&nbsp;<br><br>
+               июнь: <input type="number">&nbsp;<br><br>
+               <br><br>
+               Средняя зарплата за шесть месяцев:
+               <input type="number" disabled size=30>
+               <br><br>
+               <input type="button" value="Вычислить" onClick="task333(form)">
+               <input type="reset" value="Очистить">
+            </form>
+         </div>
+
+         <hr width="100%" />
+
+         <div id="task341">
+            <h4>Вычисление площади фигуры</h4>
+            <form name="squareForm">
+               Выберите фигуру:
+               <select name="list1">
+                  <option value=0>Круг
+                  <option value=1>Квадрат
+                  <option value=2>Треугольник (прямоугольный, равнобедренный)
+                  <option value=3>Треугольник (равносторонний)
+               </select><br><br>
+               Выберите единицу измерения:
+               <select name="list2">
+                  <option value=0>мм
+                  <option value=1>см
+                  <option value=2>м
+                  <option value=3>дюймы
+               </select><br><br>
+               Введите параметр в метрах (радиус, сторону):
+               <input type="text" size="5" name="num"><br><br>
+               <input type="button" value="Вычислить" onClick="task341(squareForm)"><br><br>
+               Фигура:
+               <input type="text" name="shape" disabled size="40">
+               Площадь:
+               <input type="text" name="result" disabled size="20"><br><br>
+               <input type="reset" value="Очистить">
+            </form>
+         </div>
+
+         <hr width="100%" />
+
+         <div id="task342">
+            <h4>Вычисление среднемесячного дохода</h4>
+            <p>Введите полученные Вами суммы за месяцы:</p>
+               <form name="profitForm">
+                  январь: <input type="text" size=8 value=0><br>
+                  февраль: <input type="text" size=8 value=0><br>
+                  март: <input type="text" size=8 value=0><br>
+                  апрель: <input type="text" size=8 value=0><br>
+                  май: <input type="text" size=8 value=0><br>
+                  июнь: <input type="text" size=8 value=0><br>
+                  июль: <input type="text" size=8 value=0><br>
+                  август: <input type="text" size=8 value=0><br>
+                  сентябрь: <input type="text" size=8 value=0><br>
+                  октябрь: <input type="text" size=8 value=0><br>
+                  ноябрь: <input type="text" size=8 value=0><br>
+                  декабрь: <input type="text" size=8 value=0><br><br>
+                  Средний доход за год:
+                  <input type="text" disabled size=8 name="avgProfit"><br><br>
+                  Максимальный доход:
+                  <input type="text" disabled size=8 name="maxProfit">
+                  <input type="text" disabled size=8 name="maxProfitMonth"><br><br>
+                  Минимальный доход:
+                  <input type="text" disabled size=8 name="minProfit">
+                  <input type="text" disabled size=8 name="minProfitMonth"><br><br>
+                  <input type="button" value="Вычислить" onClick="task342(profitForm)">
+                  <input type="reset" value="Обновить">
+               </form>
+         </div>
+      </main>
+   </body>
+</html>

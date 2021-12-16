@@ -1,0 +1,25 @@
+img {
+   width: 200px;
+   border-radius: 5px;
+   border: 1px solid #6A7DDD;
+}
+
+.theme-container {
+   display: flex;
+   align-items: center;
+   margin-top: 25px;
+}
+
+.theme-title {
+   margin-left: 15px;
+   margin-right: 5px;
+   color: white;
+}
+
+.fashion-list {
+   margin-bottom: 30px;
+}
+
+.fashion-info-container {
+   margin-top: 40px;
+}
