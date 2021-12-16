@@ -2,23 +2,43 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>452</title>
-    <script>
-        function tstFilter1() {
-            ImageLogo1.filters.light.addPoint(25, 50, 100, 250, 250, 250, 100);
-        }
-    </script>
+  <meta charset="UTF-8">
+  <title>452</title>
+  <script>
+    function tstFilter1() {
+      ImageLogo1.filters.light.addPoint(25, 50, 100, 250, 250, 250, 100);
+    }
+  </script>
 </head>
 
 <body onLoad="tstFilter1()" style="background: #ccc;">
-    <h3>Эффект применения фильтра flipV()</h3>
-    <img src="https://www.fonstola.ru/download.php?file=201111/1680x1050/fonstola.ru-60644.jpg" width="300">
-    <img src="https://www.fonstola.ru/download.php?file=201111/1680x1050/fonstola.ru-60644.jpg" style="filter: flipv();" width="300">
-    <br>
-    <h3>Применение фильтров light() и invert()</h3>
-    <img id=ImageLogo1 src="https://www.fonstola.ru/download.php?file=201111/1680x1050/fonstola.ru-60644.jpg" style="filter: light();" width="300">
-    <img SRC="https://www.fonstola.ru/download.php?file=201111/1680x1050/fonstola.ru-60644.jpg" style="filter: invert();" width="300">
+  <h3>Эффект применения фильтра flipV()</h3>
+  <img src="https://www.fonstola.ru/download.php?file=201111/1680x1050/fonstola.ru-60644.jpg" id="img1" width="300">
+  <img src="https://www.fonstola.ru/download.php?file=201111/1680x1050/fonstola.ru-60644.jpg" id="img2"
+    style="filter: flipv();" width="300">
+  <br>
+  <h3>Применение фильтров light() и invert()</h3>
+  <img id=ImageLogo1 src="https://www.fonstola.ru/download.php?file=201111/1680x1050/fonstola.ru-60644.jpg" style="filter: light();" width="300">
+  <img SRC="https://www.fonstola.ru/download.php?file=201111/1680x1050/fonstola.ru-60644.jpg" id="img4" style="filter: invert();" width="300">
+  <button id="up" onclick="incIntensivty()">Up</button>
+  <button id="down" onclick="decIntensivty()">Down</button>
+  <script>
+    let intensivity = 100;
+    const imgs = [img1, img2, img4];
+    const incIntensivty = () => {
+      intensivity += 10;
+      setIntensivity();
+    }
+    const decIntensivty = () => {
+      intensivity -= 10;
+      setIntensivity()
+    }
+    const setIntensivity = () => {
+      ImageLogo1.filters.light.clear();
+      ImageLogo1.filters.light.addPoint(25, 50, 100, 250, 250, 250, intensivity);
+    }
+    setIntensivity();
+  </script>
 </body>
 
 </html>

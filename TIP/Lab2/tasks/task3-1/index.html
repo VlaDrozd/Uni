@@ -9,16 +9,20 @@
 </head>
 
 <body>
+  <textarea name="text" id="text" cols="30" rows="10">
+
+  </textarea>
+  <button onclick="onPrompt()">Set</button>
   <script>
     const onPrompt = () => {
       // Обновляем значение в переменной
       const selectetLanguage = prompt('Выберите язык (ru/en)', 'ru');
-      const months = new Array(12).fill(0).map((_, i) => {
+      let months = new Array(12).fill(0).map((_, i) => {
         return new Date(`${i + 1}/1`).toLocaleDateString(selectetLanguage, { month: 'long' })
       });
-      alert(months);
+      months = months.sort();
+      text.value = months.join('\n');
     }
-    onPrompt();
   </script>
 </body>
 
